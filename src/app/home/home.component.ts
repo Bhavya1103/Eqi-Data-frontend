@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   hide = true;
 
 
-  constructor(private fb: FormBuilder, private _route: ActivatedRoute, private router: Router) { }
+  constructor(private fb: FormBuilder, private _route: ActivatedRoute, private router: Router, private appService:AppService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   async onSubmit() {
-    if(this.email.value=="bhavya.jain850@gmail.com"&&this.password.value=="qwertyuiop")
+    if(this.appService.login({email: this.email.value,password:this.password.value}))
     {
       this.router.navigate(['/employees'])
     }else{

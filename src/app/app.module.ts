@@ -14,6 +14,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AppService } from './app.service';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       { path: 'login', component: HomeComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'employees',component:EmployeesComponent}
+      { path: 'employees',component:EmployeesComponent},
+      { path: 'employee/:employeeId',component:EmployeeComponent}
     ]),
     MatIconModule,
     MatTableModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,9 @@
-<p>employee works!</p>
+<div class="jumbotron" *ngIf="employee">
+    <h1 class="display-4">{{employee.name}}</h1>
+    <p class="lead">An employee with salary ${{employee.salary}}</p>
+    <hr class="my-4">
+    <p>{{employee.age}} years young</p>
+    <a class="btn btn-lg btn-danger" [routerLink]="['/employees']">Go Back</a>
+  </div>
+
+<h1 *ngIf="!employee">Please Reload Too many requests</h1>

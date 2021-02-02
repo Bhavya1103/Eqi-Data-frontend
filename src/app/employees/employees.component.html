@@ -1,46 +1,21 @@
-<div class="example-container mat-elevation-z8">
-    <div class="example-loading-shade"
-         *ngIf="isLoadingResults || isRateLimitReached">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-        GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
-    </div>
-  
-    <div class="example-table-container">
-  
-      <table mat-table [dataSource]="data" class="example-table"
-             matSort matSortActive="id" matSortDisableClear matSortDirection="desc">
-        <!-- Number Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>#</th>
-          <td mat-cell *matCellDef="let row">{{row.id}}</td>
-        </ng-container>
-  
-        <!-- Title Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>name</th>
-          <td mat-cell *matCellDef="let row">{{row.name}}</td>
-        </ng-container>
-  
-        <!-- State Column -->
-        <ng-container matColumnDef="salary">
-          <th mat-header-cell *matHeaderCellDef>salary</th>
-          <td mat-cell *matCellDef="let row">{{row.salary}}</td>
-        </ng-container>
-  
-        <!-- Created Column -->
-        <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef>age</th>
-            <td mat-cell *matCellDef="let row">{{row.age}}</td>
-        </ng-container>
-
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-  
-    
-  </div>
-  
+<table class="table w-100">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Salary</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees; let i in index">
+        <th scope="row">{{employee.id}}</th>
+        <td>{{employee.name}}</td>
+        <td>{{employee.age}}</td>
+        <td>{{employee.salary}}</td>
+       <td><a class="btn btn-block btn-info" [routerLink]="['/employee',employee.id]">Get Info</a></td> 
+      </tr>
+    </tbody>
+  </table>
+  <h1 *ngIf="employees.length==0">Please Reload Too many requests</h1>
